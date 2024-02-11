@@ -1,4 +1,4 @@
 export ZDOTDIR="$HOME/.config/zsh/"
-export EDITOR="/usr/bin/nvim"
+export EDITOR="nvim"
 export MANPAGER="nvim +Man!"
 
