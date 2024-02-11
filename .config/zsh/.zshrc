@@ -2,6 +2,7 @@
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "$ZDOTDIR/startup_io.zsh"
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
@@ -56,7 +57,7 @@ rangercd () {
     if [ -f "$tmp" ]; then
         dir="$(cat "$tmp")"
         rm -f "$tmp"
-        [ --datadir "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"                                               
+        [ --datadir "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
     fi
 }
 bindkey -s '^o' 'rangercd\n'
