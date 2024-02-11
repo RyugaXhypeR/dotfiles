@@ -1,3 +1,5 @@
 # zcomps
 .config/zsh/.zcompdump*
 
+.config/nvim/lazy-lock.json
+.config/nvim/lazyvim.json
