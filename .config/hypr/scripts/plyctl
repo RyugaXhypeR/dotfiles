@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# Helper fucntion to control the media player
+#
+# :param $1: Command to execute
+# :param [$2]: Player to control
+_plyctl() {
+	player=$2
+
+	if [[ "$1" == i* ]]; then
+		# Increase volume by 5%
+		playerctl --player=$player volume 0.05+
+
+	elif [[ "$1" == d* ]]; then
+		# Decrease volume by 5%
+		playerctl --player=$player volume 0.05-
+
+	elif [[ "$1" == t* ]]; then
+		# Toggle play/pause
+		playerctl --player=$player play-pause
+
+	elif [[ "$1" == n* ]]; then
+		# Next track
+		playerctl --player=$player next
+
+	elif [[ "$1" == pr* ]]; then
+		# Previous track
+		playerctl --player=$player previous
+
+	elif [[ "$1" == pl* ]]; then
+		# Play
+		playerctl --player=$player play
+
+	elif [[ "$1" == pa* ]]; then
+		# Pause
+		playerctl --player=$player pause
+	else
+		echo "plyctl: Invalid argument"
+		return 1
+	fi
+}
+
+_plyctl $1 $2
+
+if [ $# -eq 0 ]; then
+	echo "plyctl: No arguments provided"
+	return 1
+fi

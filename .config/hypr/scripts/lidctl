@@ -1,0 +1,26 @@
+#!/bin/bash
+
+_lidhandle() {
+	case $1 in
+	--open | -o)
+		hyprctl keyword monitor ",preffered,auto,1"
+		swaylock
+		systemctl --user start swayidle
+		;;
+	--close | -c)
+		systemctl suspend
+		systemctl --user stop swayidle
+		;;
+	\?)
+		echo "Invalid option: -$OPTARG" >&2
+		;;
+	esac
+}
+
+_lidhandle $1 $2
+
+if [ $# -eq 0 ]; then
+	echo "Usage: lidctl [OPTION]"
+	echo "  -o, --open      On lid open"
+	echo "  -c, --close     On lid close"
+fi

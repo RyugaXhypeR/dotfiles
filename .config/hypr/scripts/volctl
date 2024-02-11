@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# Handler to control volume of both input and output
+# By default, it will increase the volume of both input and output by 5%
+_volctlr() {
+	dev=$1
+
+	if [ "$2" == "i" ]; then
+		amixer set $dev 5%+
+	elif [ "$2" == "d" ]; then
+		amixer set $dev 5%-
+	else
+		amixer set $dev toggle
+	fi
+}
+
+while getopts "i:o:" opt; do
+	case $opt in
+	i)
+		# Caputre -> input
+		_volctlr Capture "$OPTARG"
+		;;
+	o)
+		# Master -> input
+		_volctlr Master "$OPTARG"
+		;;
+	\?)
+		echo "Invalid option: -$OPTARG" >&2
+		;;
+	esac
+done
+
+if [ "$#" -eq 0 ]; then
+	echo "Usage: $0 [-i <i|d>] [-o <i|d>] [-m]"
+	exit 1
+fi

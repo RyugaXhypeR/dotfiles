@@ -1,0 +1,38 @@
+#!/bin/bash
+
+IMG_DIR=$HOME/Pictures/Backgrounds
+
+# Helper function to set the background image using ``swaybg``
+#
+# :param $1: The option to use
+# :param $2: The image to set
+_bgimgctl() {
+    curr_img=$HOME/.cache/wallpaper.png
+
+    if [ ! -f $curr_img ]; then
+        echo "$IMG_DIR/mad-dog-jones-nightfall.jpg" > $curr_img
+    fi
+
+    case $1 in
+        --random | -r)
+            rand_img=$(find $IMG_DIR -type f -not -wholename "$curr_img" | shuf -n 1)
+            swaybg -i $rand_img
+        ;;
+        --set | -s)
+            swaybg -i $2
+        ;;
+        \?)
+            echo "Invalid option: -$OPTARG" >&2
+            exit 1
+        ;;
+    esac
+}
+
+_bgimgctl $1 $2
+
+if [ $# -eq 0 ]; then
+    echo "Usage: bgimgctl [OPTION]"
+    echo "  -r, --random        Set a random background image"
+    echo "  -s, --set [FILE]    Set a specific background image"
+fi
+

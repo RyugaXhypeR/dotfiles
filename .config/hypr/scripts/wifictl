@@ -1,0 +1,64 @@
+#!/bin/bash
+
+# Helper functoin to control wifi and hotspot
+#
+# :param $1: Option
+_wifictl() {
+	case $1 in
+	--off)
+		nmcli radio wifi off
+		if [ $? -eq 0 ]; then
+			dunstify "Wifi disabled"
+		else
+			dunstify "Wifi failed"
+		fi
+		;;
+
+	--on)
+		nmcli radio wifi on
+		if [ $? -eq 0 ]; then
+			dunstify "Wifi enabled"
+		else
+			dunstify "Wifi failed"
+		fi
+		;;
+
+	--hotspot-open)
+		nmcli device wifi hotspot ifname wlan0 ssid "OpenWifi"
+		if [ $? -eq 0 ]; then
+			dunstify "Wifi hotspot opened"
+		else
+			dunstify "Wifi hotspot failed"
+		fi
+		;;
+
+	--hotspot-close)
+		nmcli device disconnect wlan0
+		if [ $? -eq 0 ]; then
+			dunstify "Wifi hotspot closed"
+		else
+			dunstify "Wifi hotspot failed"
+		fi
+		;;
+
+	--open-manager)
+		alacritty -e nmtui
+		;;
+
+	\?)
+		echo "Invalid option: $1"
+		;;
+
+	esac
+}
+
+_wifictl $1
+
+if [ $# -eq 0 ]; then
+	echo "Usage: wifictl [OPTION]"
+	echo "  --off               Disable wifi"
+	echo "  --on                Enable wifi"
+	echo "  --hotspot-open      Open wifi hotspot"
+	echo "  --hotspot-close     Close wifi hotspot"
+	echo "  --open-manager      Open network manager"
+fi

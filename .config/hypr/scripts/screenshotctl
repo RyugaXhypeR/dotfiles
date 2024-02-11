@@ -1,0 +1,57 @@
+#!/bin/bash
+
+# Helper function to take screenshot with ``grimblast``.
+#
+# :param $1: Option (--clipboard, --file or -f)
+# :param $2: Output file
+# :param $3: Optional flag for area selection
+
+_screenshotctl() {
+	case $1 in
+	--clipboard | -c)
+		grimblast copy
+		if [ $? -eq 0 ]; then
+			dunstify "Screenshot copied to clipboard"
+		else
+			dunstify "Screenshot failed"
+		fi
+		;;
+
+	--file | -f)
+		grimblast save "$2"
+		if [ $? -eq 0 ]; then
+			dunstify "Screenshot saved"
+		else
+			dunstify "Screenshot failed"
+		fi
+		;;
+
+	--clip-area | -ca)
+		grimblast copy area
+		if [ $? -eq 0 ]; then
+			dunstify "Screenshot copied to clipboard"
+		else
+			dunstify "Screenshot failed"
+		fi
+		;;
+
+	--file-area | -fa)
+		grimblast save area "$2"
+		if [ $? -eq 0 ]; then
+			dunstify "Screenshot saved"
+		else
+			dunstify "Screenshot failed"
+		fi
+		;;
+
+	*)
+		echo "Usage: $0 {--clipboard|--file|-f} <output_file> [area]"
+		;;
+	esac
+}
+
+_screenshotctl $1 $2
+
+if [ $# -eq 0 ]; then
+    echo "Usage: $0 {--clipboard|--file|-f} <output_file> [area]"
+fi
