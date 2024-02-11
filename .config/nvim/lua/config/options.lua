@@ -39,6 +39,8 @@ opt.updatetime = 250
 -- when cursor reaches end/beginning of line
 opt.whichwrap:append("<>[]hl")
 
+opt.conceallevel = 2
+
 g.mapleader = " "
 
 opt.clipboard = "unnamedplus"
