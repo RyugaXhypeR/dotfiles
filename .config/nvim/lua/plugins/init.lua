@@ -10,4 +10,8 @@ return {
 			},
 		},
 	},
+
+	{
+		"tpope/vim-fugitive",
+	},
 }
