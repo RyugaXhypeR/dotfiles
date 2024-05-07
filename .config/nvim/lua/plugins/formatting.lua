@@ -8,6 +8,8 @@ return {
 				lua = { "stylua" },
 				rust = { "rust-analyzer" },
 				java = { "google-java-format" },
+				latex = { "latexindent", "bibtex-tidy" },
+				sh = { "shfmt" },
 
 				python = function(bufnr)
 					if require("conform").get_formatter_info("ruff_format", bufnr).available then
@@ -16,9 +18,6 @@ return {
 						return { "isort", "black" }
 					end
 				end,
-
-				latex = { "latexindent", "bibtex-tidy" },
-				sh = { "shfmt" },
 			},
 		},
 	},
