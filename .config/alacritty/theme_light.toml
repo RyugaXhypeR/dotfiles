@@ -1,0 +1,27 @@
+[colors.primary]
+background = "#FFFFFF"
+foreground = "#11121D"
+
+[colors.normal]
+black = "#E1E2E6"
+red = "#F7768E"
+green = "#9ECE6A"
+yellow = "#E0AF68"
+blue = "#7AA2F7"
+magenta = "#AD8EE6"
+cyan = "#449DAB"
+white = "#32344A"
+
+[colors.bright]
+black = "#F0F1F4"
+red = "#FF7A93"
+green = "#B9F27C"
+yellow = "#FF9E64"
+blue = "#7DA6FF"
+magenta = "#BB9AF7"
+cyan = "#0DB9D7"
+white = "#444B6A"
+
+[cursor.style]
+blinking = "Always"
+shape = "Block"
