@@ -44,5 +44,4 @@ opt.conceallevel = 2
 g.mapleader = " "
 g.autoformat = false
 
-opt.clipboard = "unnamedplus"
 opt.guicursor = "a:blinkon0,i:block-Cursor"

@@ -22,6 +22,8 @@ _comp_options+=(globdots)		# Include hidden files.
 bindkey -v
 export KEYTIMEOUT=1
 
+unsetopt nomatch
+
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
@@ -85,3 +87,9 @@ source "$ZDOTDIR/.zprofile"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 source ~/powerlevel10k/powerlevel10k.zsh-theme
+
+eval $(zoxide init --cmd cd zsh)
+plugins=(git ssh-agent)
+
+[[ ! -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"

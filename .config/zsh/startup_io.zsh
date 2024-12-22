@@ -2,3 +2,5 @@
 if command -v pokemon-colorscripts &>/dev/null; then
 	pokemon-colorscripts --random --no-title
 fi
+
+plugins=(git ssh-agent)
