@@ -17,26 +17,15 @@ require("lazy").setup({
 		-- add LazyVim and import its plugins
 		{ "LazyVim/LazyVim", import = "lazyvim.plugins" },
 		{ import = "lazyvim.plugins.extras.coding.luasnip" },
+		{ import = "lazyvim.plugins.extras.dap" },
 		{ import = "plugins" },
 	},
+
 	defaults = {
 		lazy = false,
 		version = false,
 	},
-	install = { colorscheme = { "tokyonight " } },
+
+	install = { colorscheme = { "tokyonight" } },
 	checker = { enabled = true },
-	performance = {
-		rtp = {
-			disabled_plugins = {
-				"gzip",
-				"matchit",
-				"matchparen",
-				"netrwPlugin",
-				"tarPlugin",
-				"tohtml",
-				"tutor",
-				"zipPlugin",
-			},
-		},
-	},
 })
