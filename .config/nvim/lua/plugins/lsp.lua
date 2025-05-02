@@ -1,18 +1,31 @@
 return {
 	{
 		"neovim/nvim-lspconfig",
+		opts = {
+			servers = {
 
-		config = function(_, opts)
-			local lsp_path = "lua/plugins/lsp/"
-			local lsp_configs = vim.fn.globpath(lsp_path, "*.lua", false, true)
+				-- Lua
+				lua_ls = {
+					hint = {
+						enabled = true,
+						setType = true,
+						paramType = true,
+					},
+				},
 
-			for _, file in pairs(lsp_configs) do
-				local module = file:gsub("/", "."):gsub(".lua$", "")
-				local ok, err = pcall(require, module)
-				if not ok then
-					print("Error loading LSP config: " .. err)
-				end
-			end
-		end,
+				-- Python
+				basedpyright = {
+					analysis = {
+						diagnosticMode = "openFilesOnly",
+						inlayHints = {
+							callArgumentNames = true,
+						},
+					},
+					diagnosticSeverityOverrides = {
+						reportUnusedCallResult = false,
+					},
+				},
+			},
+		},
 	},
 }
